@@ -13,12 +13,31 @@
 #include <iostream>
 
 #include "Paciente.h"
+#include "../../../enum/PacienteTipoEnum.cpp"
 
 using namespace std;
 
 // Identificar
 void Paciente::identificar() {
     cout << "Eu sou um paciente! Meu nome eh " << this->nome << "\n";
+}
+
+// Retorna string nome do tipo de paciente
+string Paciente::getTipoPacienteNome() {
+    
+    switch (this->tipoPaciente) {
+        case PacienteTipoEnum::CLINICA_GERAL :
+            return "Clinica Geral";
+
+        case PacienteTipoEnum::ORTOPEDIA:
+            return "Ortopedia";
+
+        case PacienteTipoEnum::PEDIATRIA:
+            return "Pediatria";
+
+        default:
+            return "";
+    }
 }
 
 #endif

@@ -10,18 +10,24 @@
 #define PESSOA_H
 
 #include <string>
+#include "../../enum/PessoaTipoEnum.cpp"
+
 using namespace std;
 
 class Pessoa {
 
 public:
-    Pessoa(const string nome);
+    Pessoa(const string nome, const PessoaTipoEnum tipo);
     string getNome(void);
+    PessoaTipoEnum getTipo(void);
     virtual void identificar(void) = 0;
     ~Pessoa();
 
 protected:
     string nome;
+    PessoaTipoEnum tipo;
+    string getTipoNome(void);
+
 };
 
 #endif

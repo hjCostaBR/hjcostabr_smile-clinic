@@ -18,7 +18,7 @@ using namespace std;
 
 // Identificar
 void Funcionario::identificar() {
-    cout << "Eu sou um funcionario! Meu nome eh " << this->nome << "\n";
+    cout << "Eu sou um " << this->getTipoFuncionarioNome() << "! Meu nome eh " << this->nome << "\n";
 }
 
 #endif

@@ -10,15 +10,27 @@
 #define PACIENTE_H
 
 #include <string>
+
 #include "../Pessoa.h"
+#include "../Pessoa.cpp"
+#include "../../../enum/PessoaTipoEnum.cpp"
+#include "../../../enum/PacienteTipoEnum.cpp"
 
 using namespace std;
 
 class Paciente : public Pessoa {
 
 public:
-    Paciente(const string nome) : Pessoa(nome){};
-    virtual void identificar(void);
+    Paciente(const string nome, const PacienteTipoEnum tipoPaciente) : Pessoa(nome, PessoaTipoEnum::PACIENTE) {
+        this->tipoPaciente = tipoPaciente;
+    };
+
+    virtual void identificar(void) = 0;
+    PacienteTipoEnum getTipoPaciente(void);
+
+protected:
+    PacienteTipoEnum tipoPaciente;
+    string getTipoPacienteNome(void);
 };
 
 #endif

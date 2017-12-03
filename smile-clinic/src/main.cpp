@@ -9,8 +9,10 @@
 #include <vector>
 #include <exception>
 
-#include "class/pessoa/funcionario/Funcionario.h"
-#include "class/pessoa/funcionario/Funcionario.cpp"
+#include "class/pessoa/funcionario/FuncionarioClinicoGeral.h"
+#include "class/pessoa/funcionario/FuncionarioOrtodontista.h"
+#include "class/pessoa/funcionario/FuncionarioPediatra.h"
+#include "class/pessoa/funcionario/FuncionarioSecretaria.h"
 #include "class/pessoa/paciente/Paciente.h"
 #include "class/pessoa/paciente/Paciente.cpp"
 
@@ -18,29 +20,49 @@ using namespace std;
 
 int main(int argsc, char **argsv) {
 
-    // Valida parametrizacao
-    if (argsc != 3) {
-        cout << "Falha na parametrizacao!\nInforme os nomes de:"
-             << "\n\t01 Funcionario;"
-             << "\n\t01 Paciente;"
-             << "\n\n";
-        exit(1);
-    }
-    
+    // Captura nomes dos funcionarios
+    char nome[50];
+
+    cout << "Informe o nome do Clinico Geral: ";
+    scanf("%s", nome);
+    string nomeClinicoGeral(nome);
+
+    cout << "\n\nInforme o nome do Ortodontista: ";
+    scanf("%s", nome);
+    string nomeOrtodontista(nome);
+
+    cout << "\n\nInforme o nome do Pediatra: ";
+    scanf("%s", nome);
+    string nomePediatra(nome);
+
+    cout << "\n\nInforme o nome da Secretaria: ";
+    scanf("%s", nome);
+    string nomeSecretaria(nome);
+
     // Cria funcionarios
     vector<Funcionario> funcionarios;
-    string nomeFuncionario = argsv[1];
-    funcionarios.push_back(Funcionario(nomeFuncionario));
+    funcionarios.push_back(FuncionarioClinicoGeral(nomeClinicoGeral));
+    funcionarios.push_back(FuncionarioOrtodontista(nomeOrtodontista));
+    funcionarios.push_back(FuncionarioPediatra(nomePediatra));
+    funcionarios.push_back(FuncionarioSecretaria(nomeSecretaria));
 
     // Cria pacientes
     vector<Paciente> pacientes;
-    string nomePaciente = argsv[2];
-    pacientes.push_back(Paciente(nomePaciente));
+    // pacientes.push_back(Paciente(nomePaciente));
 
-    cout << "Testando o Funcionario:\n";
-    funcionarios[0].identificar();
-    
-    cout << "Testando o Paciente:\n";
-    pacientes[0].identificar();
-    // exit(0);
+    // Identifica funcionarios
+    cout << "Testando funcionarios: ";
+
+    for (uint i = 0; i < funcionarios.size(); i++) {
+        funcionarios[i].identificar();
+    }
+
+    // Identifica pacientes
+    cout << "Testando pacientes: ";
+
+    for (uint i = 0; i < funcionarios.size(); i++) {
+        pacientes[i].identificar();
+    }
+
+    exit(0);
 }
