@@ -19,8 +19,7 @@ using namespace std;
 class FuncionarioSecretaria : public Funcionario {
 
 public:
-    FuncionarioSecretaria(const string nome) : Funcionario(nome, FuncionarioTipoEnum::PEDIATRA) {};
-    ~FuncionarioSecretaria(void);
+    FuncionarioSecretaria(const string nome) : Funcionario(nome, FuncionarioTipoEnum::SECRETARIA) { };
 };
 
 #endif

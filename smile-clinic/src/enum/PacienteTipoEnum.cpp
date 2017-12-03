@@ -10,7 +10,7 @@
 #define PACIENTE_TIPO_CPP
 
 enum PacienteTipoEnum {
-    ORTOPEDIA = 100,
+    ORTODONTIA = 100,
     PEDIATRIA,
     CLINICA_GERAL
 };

@@ -51,7 +51,7 @@ string Pessoa::getTipoNome() {
 
 // Destrutor
 Pessoa::~Pessoa() {
-    cout << "Destruindo " << this->getTipoNome() << ": " << this->nome << "...\n";
+    cout << "Destruindo " << this->getTipoNome() << "(a): " << this->nome << "...\n";
 }
 
 #endif

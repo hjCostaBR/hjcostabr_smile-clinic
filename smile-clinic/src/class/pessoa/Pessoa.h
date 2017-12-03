@@ -21,13 +21,12 @@ public:
     string getNome(void);
     PessoaTipoEnum getTipo(void);
     virtual void identificar(void) = 0;
-    ~Pessoa();
+    virtual ~Pessoa();
 
 protected:
     string nome;
     PessoaTipoEnum tipo;
     string getTipoNome(void);
-
 };
 
 #endif

@@ -19,8 +19,7 @@ using namespace std;
 class FuncionarioClinicoGeral : public Funcionario {
 
 public:
-    FuncionarioClinicoGeral(const string nome) : Funcionario(nome, FuncionarioTipoEnum::CLINICO_GERAL){};
-    ~FuncionarioClinicoGeral();
+    FuncionarioClinicoGeral(const string nome) : Funcionario(nome, FuncionarioTipoEnum::CLINICO_GERAL) { };
 };
 
 #endif

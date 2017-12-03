@@ -20,7 +20,6 @@ class FuncionarioOrtodontista : public Funcionario {
 
 public:
     FuncionarioOrtodontista(const string nome) : Funcionario(nome, FuncionarioTipoEnum::ORTODONTISTA) { };
-    ~FuncionarioOrtodontista(void);
 };
 
 #endif

@@ -25,12 +25,14 @@ public:
         this->tipoFuncionario   = tipoFuncionario;
     };
 
-    void identificar(void);
     FuncionarioTipoEnum getTipoFuncionario(void);
+    virtual void identificar(void);
+    virtual ~Funcionario();
 
 protected:
     FuncionarioTipoEnum tipoFuncionario;
     string getTipoFuncionarioNome(void);
+    void gerarIdentificacaoGenerica(void);
 };
 
 #endif

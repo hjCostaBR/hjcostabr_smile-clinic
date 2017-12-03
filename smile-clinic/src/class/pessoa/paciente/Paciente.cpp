@@ -19,7 +19,7 @@ using namespace std;
 
 // Identificar
 void Paciente::identificar() {
-    cout << "Eu sou um paciente! Meu nome eh " << this->nome << "\n";
+    cout << "Eu sou um(a) paciente de " << this->getTipoPacienteNome() << "! Meu nome eh " << this->nome << "\n";
 }
 
 // Retorna string nome do tipo de paciente
@@ -29,8 +29,8 @@ string Paciente::getTipoPacienteNome() {
         case PacienteTipoEnum::CLINICA_GERAL :
             return "Clinica Geral";
 
-        case PacienteTipoEnum::ORTOPEDIA:
-            return "Ortopedia";
+        case PacienteTipoEnum::ORTODONTIA:
+            return "Ortodontia";
 
         case PacienteTipoEnum::PEDIATRIA:
             return "Pediatria";
@@ -38,6 +38,11 @@ string Paciente::getTipoPacienteNome() {
         default:
             return "";
     }
+}
+
+// Destrutor
+Paciente::~Paciente() {
+    cout << "Destruindo " << this->getTipoPacienteNome() << ": " << this->nome << "...\n";
 }
 
 #endif

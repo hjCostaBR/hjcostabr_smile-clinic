@@ -25,8 +25,9 @@ public:
         this->tipoPaciente = tipoPaciente;
     };
 
-    virtual void identificar(void) = 0;
     PacienteTipoEnum getTipoPaciente(void);
+    virtual void identificar(void);
+    virtual ~Paciente();
 
 protected:
     PacienteTipoEnum tipoPaciente;
