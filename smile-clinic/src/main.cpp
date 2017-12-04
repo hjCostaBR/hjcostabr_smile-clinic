@@ -20,6 +20,10 @@
 #include "class/pessoa/paciente/PacientePediatria.h"
 #include "class/pessoa/paciente/PacienteClinicaGeral.h"
 #include "class/pessoa/paciente/PacienteOrtodontia.h"
+// #include "class/Orcamento.h"
+#include "class/Procedimento.h"
+#include "class/Procedimento.cpp"
+#include "../../date/Date.h"
 
 using namespace std;
 
@@ -90,5 +94,19 @@ int main(int argsc, char **argsv) {
 
     for (uint i = 0; i < pacientes.size(); i++) {
         pacientes[i].identificar();
+    }
+
+    // Inicia simulacao (se necessario)
+    char iniciar;
+    cout << "\nIniciar simulacao? (s/n)";
+    scanf("%c", &iniciar);
+    
+    if (iniciar == 's') {
+        Procedimento procedimento1 = Procedimento();
+        procedimento1.setNome("Limpeza");
+        procedimento1.setDentista(funcionarios[0]);
+        procedimento1.setValor(50);
+        Date foo = Date("dd/mm/aaaa", "01/12/2017");
+        procedimento1.setDataProcedimento(foo);
     }
 }
