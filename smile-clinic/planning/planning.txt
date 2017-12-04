@@ -25,16 +25,16 @@
         - Atributos
             - Paciente
             - Procedimentos
+            - DataPagamento
+        
+        - Metodos
+            - getValorTotal
+            - getProcedimentos
 
     - Procedimento
         - Atributos
             - DataProcedimento
-            - DataPagamento
             - Dentista
-
-        - Metodos
-            - getValorTotal
-            - getProcedimentos
 
     - Clinica
         - Descricao
