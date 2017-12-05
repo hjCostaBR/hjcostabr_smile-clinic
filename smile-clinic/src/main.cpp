@@ -39,7 +39,7 @@ int main(int argsc, char **argsv) {
 
     getchar();
 
-    // Captura noe da clinica
+    // Captura nome da clinica
     char nome[50];
 
     cout << "\n\n";
