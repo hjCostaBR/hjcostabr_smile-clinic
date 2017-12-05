@@ -236,5 +236,4 @@ int main(int argsc, char **argsv) {
 
     // Fim
     cout << "\n\nFinalizando execucao...\n";
-    cout << "\nPrograma desenvolvido por hjCostaBR\nAluno: Hebert Costa - 2016 097 439\n";
 }
