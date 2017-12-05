@@ -37,7 +37,6 @@ int main(int argsc, char **argsv) {
             << "Nao utilizar espacos para definir os nomes solicitados durante a execucao!" << endl
             << "\nEntendeu? (s)" << endl << endl;
 
-    char entendi;
     getchar();
 
     // Captura noe da clinica
@@ -237,4 +236,5 @@ int main(int argsc, char **argsv) {
 
     // Fim
     cout << "\n\nFinalizando execucao...\n";
+    cout << "\nPrograma desenvolvido por hjCostaBR\nAluno: Hebert Costa - 2016 097 439\n";
 }
