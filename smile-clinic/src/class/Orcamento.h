@@ -26,18 +26,18 @@ public:
     bool isPago(void);
 
     // Getters
-    Date getDataPagamento(void);
-    Paciente getPaciente(void);
+    Date* getDataPagamento(void);
+    Paciente* getPaciente(void);
     double getValorTotal(void);
 
     // Setters
     void addProcedimento(const Procedimento procedimento);
-    void setDataPagamento(const Date DataPagamento);
-    void setPaciente(const Paciente paciente);
+    void setDataPagamento(Date* DataPagamento);
+    void setPaciente(Paciente* paciente);
 
 private:
-    Date DataPagamento;
-    Paciente paciente;
+    Date* dataPagamento;
+    Paciente* paciente;
     vector<Procedimento> procedimentos;
 };
 

@@ -22,11 +22,17 @@ using namespace std;
 // Construtor
 Orcamento::Orcamento() {
     cout << "Gerando novo orcamento...\n";
+    this->dataPagamento = nullptr;
 }
 
 // Determina se o orcamento jah foi pago
 bool Orcamento::isPago() {
-    return (this->dataPagamento.getDate() == "1/1/1970") ? false : true;
+
+    if (this->dataPagamento == nullptr || this->dataPagamento->getDate() == "1/1/1970") {
+        return false;
+    }
+
+    return true;
 }
 
 // Calcula & retorna o valor total do orcamento
@@ -42,12 +48,12 @@ double Orcamento::getValorTotal(void) {
 }
 
 // Getter: Data de pagamento
-Date &Orcamento::getDataPagamento(void) {
+Date* Orcamento::getDataPagamento(void) {
     return this->dataPagamento;
 }
 
 // Getter: Paciente
-Paciente Orcamento::getPaciente(void) {
+Paciente* Orcamento::getPaciente(void) {
     return this->paciente;
 }
 
@@ -62,12 +68,12 @@ void Orcamento::addProcedimento(const Procedimento procedimento) {
 }
 
 // Define data de pagamento
-void Orcamento::setDataPagamento(const Date dataPagamento) {
+void Orcamento::setDataPagamento(Date* dataPagamento) {
     this->dataPagamento = dataPagamento;
 }
 
 // Define paciente
-void Orcamento::setPaciente(const Paciente paciente) {
+void Orcamento::setPaciente(Paciente* paciente) {
     this->paciente  = paciente;
 }
 

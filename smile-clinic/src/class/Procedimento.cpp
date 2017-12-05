@@ -20,7 +20,7 @@
 using namespace std;
 
 Procedimento::Procedimento(void) {
-    cout << "Criando novo procedimento...\n";
+    cout << "\nCriando novo procedimento...";
 }
 
 // Getter: Nome
@@ -34,12 +34,12 @@ double Procedimento::getValor() {
 }
 
 // Getter: Data
-Date Procedimento::getDataProcedimento() {
+Date* Procedimento::getDataProcedimento() {
     return this->dataProcedimento;
 }
 
 // Getter: Dentista
-Funcionario Procedimento::getDentista() {
+Funcionario* Procedimento::getDentista() {
     return this->dentista;
 }
 
@@ -54,12 +54,12 @@ void Procedimento::setValor(const double valor) {
 }
 
 // Setter: Data Procedimento
-void Procedimento::setDataProcedimento(const Date dataProcedimento) {
+void Procedimento::setDataProcedimento(Date* dataProcedimento) {
     this->dataProcedimento = dataProcedimento;
 }
 
 // Setter: Dentista
-void Procedimento::setDentista(const Funcionario dentista) {
+void Procedimento::setDentista(Funcionario* dentista) {
     this->dentista = dentista;
 }
 

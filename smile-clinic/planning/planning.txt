@@ -38,7 +38,7 @@
 
     - Clinica
         - Descricao
-            - Classe container
+            - Utilizar classes container
             - Pessoas sao adicionadas dinamicamente
         
         - Funcionalidades

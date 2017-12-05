@@ -24,16 +24,34 @@
 #include "class/Orcamento.cpp"
 #include "class/Procedimento.h"
 #include "class/Procedimento.cpp"
+#include "class/Clinica.h"
+#include "class/Clinica.cpp"
 #include "../../date/Date.h"
 
 using namespace std;
 
 int main(int argsc, char **argsv) {
 
-    // Captura nomes dos funcionarios
+    // Instrucoes
+    cout    << "\n== INSTRUCOES =================" << endl
+            << "Nao utilizar espacos para definir os nomes solicitados durante a execucao!" << endl
+            << "\nEntendeu? (s)" << endl << endl;
+
+    char entendi;
+    getchar();
+
+    // Captura noe da clinica
     char nome[50];
-    
-    cout << "- Funcionarios\n";
+
+    cout << "\n\n";
+    cout << "- Clinica\n";
+
+    cout << "Informe o nome da clinica: ";
+    scanf("%s", nome);
+    string nomeClinica(nome);
+
+    // Captura nomes dos funcionarios
+    cout << "\n-Funcionarios\n";
     
     cout << "Informe o nome do Clinico Geral: ";
     scanf("%s", nome);
@@ -66,35 +84,41 @@ int main(int argsc, char **argsv) {
     scanf("%s", nome);
     string nomePacientePediatria(nome);
 
-    // Cria funcionarios
+    // Cria clinica
     cout << "\n\n";
-    vector<Funcionario> funcionarios;
+    Clinica clinica = Clinica(nomeClinica);
+
+    // Cria funcionarios
+    cout << "\n";
+    vector<Funcionario*> funcionarios;
     
-    funcionarios.push_back(FuncionarioClinicoGeral(nomeClinicoGeral));
-    funcionarios.push_back(FuncionarioOrtodontista(nomeOrtodontista));
-    funcionarios.push_back(FuncionarioPediatra(nomePediatra));
-    funcionarios.push_back(FuncionarioSecretaria(nomeSecretaria));
+    funcionarios.push_back(new FuncionarioClinicoGeral(nomeClinicoGeral));
+    funcionarios.push_back(new FuncionarioOrtodontista(nomeOrtodontista));
+    funcionarios.push_back(new FuncionarioPediatra(nomePediatra));
+    funcionarios.push_back(new FuncionarioSecretaria(nomeSecretaria));
 
     // Cria pacientes
-    cout << "\n\n";
+    cout << "\n";
 
-    vector<Paciente> pacientes;
-    pacientes.push_back(PacienteClinicoGeral(nomePacienteClinica));
-    pacientes.push_back(PacienteOrtodontia(nomePacienteOrtodontia));
-    pacientes.push_back(PacientePediatria(nomePacientePediatria));
+    vector<Paciente*> pacientes;
+    pacientes.push_back(new PacienteClinicoGeral(nomePacienteClinica));
+    pacientes.push_back(new PacienteOrtodontia(nomePacienteOrtodontia));
+    pacientes.push_back(new PacientePediatria(nomePacientePediatria));
 
     // Identifica funcionarios
     cout << "\nTestando funcionarios: \n";
 
     for (uint i = 0; i < funcionarios.size(); i++) {
-        funcionarios[i].identificar();
+        funcionarios[i]->identificar();
+        clinica.addPessoa(funcionarios[i]);
     }
 
     // Identifica pacientes
     cout << "\nTestando pacientes: \n";
 
     for (uint i = 0; i < pacientes.size(); i++) {
-        pacientes[i].identificar();
+        pacientes[i]->identificar();
+        clinica.addPessoa(pacientes[i]);
     }
 
     // Inicia simulacao (se necessario)
@@ -104,11 +128,27 @@ int main(int argsc, char **argsv) {
     
     if (iniciar == 's') {
 
+        // Add promocoes para a clinica
+        char repetir;
+
+        do {
+
+            cout << "\nInsira o nome de uma nova promocao para a clinica '" << clinica.getNome() << "': " << endl;
+            scanf("%s", nome);
+            string nomePromocao(nome);
+
+            clinica.addPromocao(nomePromocao);
+
+            cout << "\nAdicionar mais uma promocao? (s/n) ";
+            cin >> repetir;
+
+        } while (repetir == 's');
+
         // Lista de procedimentos
         vector<Procedimento> procedimentos;
 
         // Procedimento: Limpeza
-        Date dataProcedimento = Date("dd/mm/aaaa", "01/12/2017");
+        Date* dataProcedimento = new Date("dd/mm/aaaa", "01/12/2017");
         procedimentos.push_back(Procedimento());
         procedimentos[0].setNome("Limpeza");
         procedimentos[0].setDentista(funcionarios[0]);
@@ -116,12 +156,20 @@ int main(int argsc, char **argsv) {
         procedimentos[0].setDataProcedimento(dataProcedimento);
 
         // Procedimento: Remover Siso
-        dataProcedimento = Date("dd/mm/aaaa", "01/11/2017");
+        dataProcedimento = new Date("dd/mm/aaaa", "01/11/2017");
         procedimentos.push_back(Procedimento());
         procedimentos[1].setNome("Remover Siso");
         procedimentos[1].setDentista(funcionarios[1]);
         procedimentos[1].setValor(350);
         procedimentos[1].setDataProcedimento(dataProcedimento);
+
+        // Procedimento: Canal
+        dataProcedimento = new Date("dd/mm/aaaa", "01/10/2017");
+        procedimentos.push_back(Procedimento());
+        procedimentos[2].setNome("Carie");
+        procedimentos[2].setDentista(funcionarios[2]);
+        procedimentos[2].setValor(250);
+        procedimentos[2].setDataProcedimento(dataProcedimento);
 
         // Lista de orcamentos
         vector<Orcamento> orcamentos;
@@ -133,9 +181,9 @@ int main(int argsc, char **argsv) {
         orcamentos[0].setPaciente(pacientes[0]);
 
         // Orcamento: Breno
-        Date dataPagamento = Date("dd/mm/aaaa", "25/12/2017");
+        Date* dataPagamento = new Date("dd/mm/aaaa", "25/12/2017");
         orcamentos.push_back(Orcamento());
-        orcamentos[1].addProcedimento(procedimentos[0]);
+        orcamentos[1].addProcedimento(procedimentos[2]);
         orcamentos[1].addProcedimento(procedimentos[1]);
         orcamentos[1].setPaciente(pacientes[1]);
         orcamentos[1].setDataPagamento(dataPagamento);
@@ -146,10 +194,11 @@ int main(int argsc, char **argsv) {
         for (uint j = 0; j < orcamentos.size(); j++) {
             Orcamento orcamento = orcamentos[j];
 
-            cout << "- " << (j + 1) << " - Orcamento do paciente " << orcamento.getPaciente().getNome() << ":";
+            cout << "- " << (j + 1) << " - Orcamento do paciente " << orcamento.getPaciente()->getNome() << ":";
+            cout << "\n\t- Valor: R$ " << orcamento.getValorTotal();
 
             if (orcamento.isPago()) {
-                cout << "\n\t- Pago na data: " << orcamento.getDataPagamento().getDate() << ";";
+                cout << "\n\t- Pago na data: " << orcamento.getDataPagamento()->getDate() << ";";
 
             } else {
                 cout << "\n\t- Ainda nao foi pago;";
@@ -160,14 +209,30 @@ int main(int argsc, char **argsv) {
             for (uint k = 0; k < orcamento.getProcedimentos().size(); k++) {
                 Procedimento procedimento = orcamento.getProcedimentos()[k];
                 cout << "\n\t\t- " << (k + 1) << " - " << procedimento.getNome();
-                cout << "\n\t\t\t Dentista: " << procedimento.getDentista().getNome() << ";";
+                cout << "\n\t\t\t Dentista: " << procedimento.getDentista()->getNome() << ";";
                 cout << "\n\t\t\t Preco: " << procedimento.getValor() << ";";
-                cout << "\n\t\t\t Data: " << procedimento.getDataProcedimento().getDate() << ";";
+                cout << "\n\t\t\t Data: " << procedimento.getDataProcedimento()->getDate() << ";";
                 cout << "\n";
             }
 
             cout << "\n";
         }
+
+        // Notificar pacientes sobre promocoes
+        cout << "\n\nGerar notificacao de promocoes:" << endl;
+
+        do {
+
+            cout << "\nInforme o nome de uma promocao para notificar os pacientes da clinica '" << clinica.getNome() << "'" << endl;
+            scanf("%s", nome);
+            string nomePromocao(nome);
+
+            clinica.notificarPromocao(nomePromocao);
+
+            cout << "\nNotificar sobre outra promocao? (s/n) ";
+            cin >> repetir;
+
+        } while (repetir == 's');
     }
 
     // Fim

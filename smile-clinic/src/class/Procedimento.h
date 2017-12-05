@@ -22,8 +22,8 @@ class Procedimento {
 private:
     string nome;
     double valor;
-    Date dataProcedimento;
-    Funcionario dentista;
+    Date* dataProcedimento;
+    Funcionario* dentista;
 
 public:
     Procedimento(void);
@@ -31,14 +31,14 @@ public:
     // Getters
     string getNome(void);
     double getValor(void);
-    Date getDataProcedimento(void);
-    Funcionario getDentista(void);
+    Date* getDataProcedimento(void);
+    Funcionario* getDentista(void);
 
     // Setters
     void setNome(const string nome);
     void setValor(const double valor);
-    void setDataProcedimento(const Date dataProcedimento);
-    void setDentista(const Funcionario dentista);
+    void setDataProcedimento(Date* dataProcedimento);
+    void setDentista(Funcionario* dentista);
 };
 
 #endif
