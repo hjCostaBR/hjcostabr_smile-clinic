@@ -20,7 +20,8 @@
 #include "class/pessoa/paciente/PacientePediatria.h"
 #include "class/pessoa/paciente/PacienteClinicaGeral.h"
 #include "class/pessoa/paciente/PacienteOrtodontia.h"
-// #include "class/Orcamento.h"
+#include "class/Orcamento.h"
+#include "class/Orcamento.cpp"
 #include "class/Procedimento.h"
 #include "class/Procedimento.cpp"
 #include "../../date/Date.h"
@@ -98,15 +99,77 @@ int main(int argsc, char **argsv) {
 
     // Inicia simulacao (se necessario)
     char iniciar;
-    cout << "\nIniciar simulacao? (s/n)";
-    scanf("%c", &iniciar);
+    cout << "\nIniciar simulacao? (s/n) ";
+    cin >> iniciar;
     
     if (iniciar == 's') {
-        Procedimento procedimento1 = Procedimento();
-        procedimento1.setNome("Limpeza");
-        procedimento1.setDentista(funcionarios[0]);
-        procedimento1.setValor(50);
-        Date foo = Date("dd/mm/aaaa", "01/12/2017");
-        procedimento1.setDataProcedimento(foo);
+
+        // Lista de procedimentos
+        vector<Procedimento> procedimentos;
+
+        // Procedimento: Limpeza
+        Date dataProcedimento = Date("dd/mm/aaaa", "01/12/2017");
+        procedimentos.push_back(Procedimento());
+        procedimentos[0].setNome("Limpeza");
+        procedimentos[0].setDentista(funcionarios[0]);
+        procedimentos[0].setValor(50);
+        procedimentos[0].setDataProcedimento(dataProcedimento);
+
+        // Procedimento: Remover Siso
+        dataProcedimento = Date("dd/mm/aaaa", "01/11/2017");
+        procedimentos.push_back(Procedimento());
+        procedimentos[1].setNome("Remover Siso");
+        procedimentos[1].setDentista(funcionarios[1]);
+        procedimentos[1].setValor(350);
+        procedimentos[1].setDataProcedimento(dataProcedimento);
+
+        // Lista de orcamentos
+        vector<Orcamento> orcamentos;
+
+        // Orcamento: Bruno
+        orcamentos.push_back(Orcamento());
+        orcamentos[0].addProcedimento(procedimentos[0]);
+        orcamentos[0].addProcedimento(procedimentos[1]);
+        orcamentos[0].setPaciente(pacientes[0]);
+
+        // Orcamento: Breno
+        Date dataPagamento = Date("dd/mm/aaaa", "25/12/2017");
+        orcamentos.push_back(Orcamento());
+        orcamentos[1].addProcedimento(procedimentos[0]);
+        orcamentos[1].addProcedimento(procedimentos[1]);
+        orcamentos[1].setPaciente(pacientes[1]);
+        orcamentos[1].setDataPagamento(dataPagamento);
+
+        // Lista dados dos orcamentos
+        cout << "\n\nListando orcamentos...\n";
+
+        for (uint j = 0; j < orcamentos.size(); j++) {
+            Orcamento orcamento = orcamentos[j];
+
+            cout << "- " << (j + 1) << " - Orcamento do paciente " << orcamento.getPaciente().getNome() << ":";
+
+            if (orcamento.isPago()) {
+                cout << "\n\t- Pago na data: " << orcamento.getDataPagamento().getDate() << ";";
+
+            } else {
+                cout << "\n\t- Ainda nao foi pago;";
+            }
+
+            cout << "\n\t- Lista de procedimentos:";
+
+            for (uint k = 0; k < orcamento.getProcedimentos().size(); k++) {
+                Procedimento procedimento = orcamento.getProcedimentos()[k];
+                cout << "\n\t\t- " << (k + 1) << " - " << procedimento.getNome();
+                cout << "\n\t\t\t Dentista: " << procedimento.getDentista().getNome() << ";";
+                cout << "\n\t\t\t Preco: " << procedimento.getValor() << ";";
+                cout << "\n\t\t\t Data: " << procedimento.getDataProcedimento().getDate() << ";";
+                cout << "\n";
+            }
+
+            cout << "\n";
+        }
     }
+
+    // Fim
+    cout << "\nFinalizando execucao...\n";
 }

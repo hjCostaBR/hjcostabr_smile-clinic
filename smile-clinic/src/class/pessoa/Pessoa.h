@@ -21,7 +21,6 @@ public:
     string getNome(void);
     PessoaTipoEnum getTipo(void);
     virtual void identificar(void) = 0;
-    virtual ~Pessoa();
 
 protected:
     string nome;

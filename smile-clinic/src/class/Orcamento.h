@@ -21,11 +21,19 @@ using namespace std;
 class Orcamento {
 
 public:
-    Orcamento();
+    Orcamento(void);
+    vector<Procedimento> getProcedimentos();
+    bool isPago(void);
+
+    // Getters
     Date getDataPagamento(void);
     Paciente getPaciente(void);
-    vector<Procedimento> getProcedimentos();
-    double getValorTotalo(void);
+    double getValorTotal(void);
+
+    // Setters
+    void addProcedimento(const Procedimento procedimento);
+    void setDataPagamento(const Date DataPagamento);
+    void setPaciente(const Paciente paciente);
 
 private:
     Date DataPagamento;

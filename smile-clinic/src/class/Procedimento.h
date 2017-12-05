@@ -13,13 +13,20 @@
 
 #include "../../../date/Date.h"
 #include "pessoa/funcionario/Funcionario.h"
+#include "pessoa/funcionario/Funcionario.cpp"
 
 using namespace std;
 
 class Procedimento {
 
+private:
+    string nome;
+    double valor;
+    Date dataProcedimento;
+    Funcionario dentista;
+
 public:
-    Procedimento();
+    Procedimento(void);
 
     // Getters
     string getNome(void);
@@ -32,12 +39,6 @@ public:
     void setValor(const double valor);
     void setDataProcedimento(const Date dataProcedimento);
     void setDentista(const Funcionario dentista);
-
-private:
-    string nome;
-    double valor;
-    Date dataProcedimento;
-    Funcionario dentista;
 };
 
 #endif

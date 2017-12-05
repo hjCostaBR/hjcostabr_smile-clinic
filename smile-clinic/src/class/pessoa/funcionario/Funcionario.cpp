@@ -47,9 +47,4 @@ string Funcionario::getTipoFuncionarioNome() {
     }
 }
 
-// Destrutor
-Funcionario::~Funcionario() {
-    cout << "Destruindo " << this->getTipoFuncionarioNome() << ": " << this->nome << "...\n";
-}
-
 #endif

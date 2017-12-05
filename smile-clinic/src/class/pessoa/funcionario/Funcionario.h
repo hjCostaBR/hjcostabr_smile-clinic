@@ -21,13 +21,13 @@ using namespace std;
 class Funcionario : public Pessoa {
 
 public:
+    Funcionario() : Pessoa("", PessoaTipoEnum::FUNCIONARIO) {};
     Funcionario(const string nome, const FuncionarioTipoEnum tipoFuncionario) : Pessoa(nome, PessoaTipoEnum::FUNCIONARIO) {
         this->tipoFuncionario   = tipoFuncionario;
     };
 
     FuncionarioTipoEnum getTipoFuncionario(void);
     virtual void identificar(void);
-    virtual ~Funcionario();
 
 protected:
     FuncionarioTipoEnum tipoFuncionario;

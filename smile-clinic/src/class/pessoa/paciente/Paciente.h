@@ -21,13 +21,13 @@ using namespace std;
 class Paciente : public Pessoa {
 
 public:
+    Paciente() : Pessoa("", PessoaTipoEnum::PACIENTE) {};
     Paciente(const string nome, const PacienteTipoEnum tipoPaciente) : Pessoa(nome, PessoaTipoEnum::PACIENTE) {
         this->tipoPaciente = tipoPaciente;
     };
 
     PacienteTipoEnum getTipoPaciente(void);
     virtual void identificar(void);
-    virtual ~Paciente();
 
 protected:
     PacienteTipoEnum tipoPaciente;

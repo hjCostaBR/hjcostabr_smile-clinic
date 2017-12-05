@@ -14,12 +14,13 @@
 
 #include "Procedimento.h"
 #include "pessoa/funcionario/Funcionario.h"
+#include "pessoa/funcionario/Funcionario.cpp"
 #include "../../../date/Date.h"
 
 using namespace std;
 
-Procedimento::Procedimento() {
-    cout << "Criando novo procedimento..."
+Procedimento::Procedimento(void) {
+    cout << "Criando novo procedimento...\n";
 }
 
 // Getter: Nome

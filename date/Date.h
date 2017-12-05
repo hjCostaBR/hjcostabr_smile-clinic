@@ -106,6 +106,7 @@ private:
     };
     
 public:
+    Date() : DateInterface("dd/mm/aaaa", "01/01/1970") {};
     Date(string _format, string _date) : DateInterface(_format, _date) {};
     
     string getDate() {

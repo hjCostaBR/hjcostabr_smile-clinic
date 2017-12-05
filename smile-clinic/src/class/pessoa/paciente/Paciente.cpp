@@ -40,9 +40,4 @@ string Paciente::getTipoPacienteNome() {
     }
 }
 
-// Destrutor
-Paciente::~Paciente() {
-    cout << "Destruindo " << this->getTipoPacienteNome() << ": " << this->nome << "...\n";
-}
-
 #endif
