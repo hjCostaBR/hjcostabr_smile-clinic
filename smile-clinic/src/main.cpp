@@ -236,5 +236,5 @@ int main(int argsc, char **argsv) {
     }
 
     // Fim
-    cout << "\nFinalizando execucao...\n";
+    cout << "\n\nFinalizando execucao...\n";
 }
